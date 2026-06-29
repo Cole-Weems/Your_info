@@ -1,5 +1,6 @@
 import tkinter as tk
-
+from reportlab.pdfgen import canvas
+from reportlab.lib import colors
 
 def entry_field(identifier, label, width):
     entry = ((identifier) + "_entry")
@@ -25,6 +26,34 @@ def entry_field(identifier, label, width):
 
     return entry
 
+def create_pdf(first, last, age, height, weight, country, eye_color):
+    fileName = 'info.pdf'
+    documentTitle = 'Result'
+
+    pdf = canvas.Canvas(fileName)
+    pdf.setTitle(documentTitle)
+    pdf.setFont("Helvetica-Bold", 36)
+
+    textLines = [
+        str(("First name:" + first)),
+        ("Last name:" + last),
+        ("Age:" + age),
+        ("Height" + height),
+        ("Weight:" + weight),
+        ("Country of residence:" + country),
+        ("Eye color:" + eye_color)
+    ]
+
+    text = pdf.beginText(40, 680)
+    text.setFont("Courier", 18)
+    text.setFillColor(colors.red)
+
+    for line in textLines:
+        text.textLine(line)
+
+    pdf.drawText(text)
+
+    pdf.save()
 
 root = tk.Tk()
 root.title("Your Info")
@@ -33,16 +62,9 @@ label = tk.Label(root, text="A simple script to save your info to a pdf for prin
 label.pack()
 
 
-label = tk.Label(root, text="You can use the below button to export to a pdf")
-label.pack()
+first = entry_field("first", "First name:", 12)
 
-button = tk.Button(root, text="Export", width=25, command=root.destroy)
-button.pack()
-
-
-entry_field("first", "First name:", 12)
-
-entry_field("last", "Last name:", 12)
+last = entry_field("last", "Last name:", 12)
 
 label = tk.Label(root, text="Sex:")
 label.pack()
@@ -54,13 +76,20 @@ lb.insert(2, "Female")
 lb.pack()
 
 
-entry_field("height", "Height:", 12)
+height = entry_field("height", "Height:", 12)
 
+weight = entry_field("weight", "Weight:", 12)
 
-entry_field("country", "Country of residence:", 18)
+country = entry_field("country", "Country of residence:", 18)
 
-entry_field("age", "Age:", 12)
+age = entry_field("age", "Age:", 12)
 
-entry_field("eye", "Eye color:", 18)
+eye_color = entry_field("eye", "Eye color:", 18)
+
+label = tk.Label(root, text="You can use the below button to export to a pdf")
+label.pack()
+
+button = tk.Button(root, text="Export", width=25, command=create_pdf(first, last, age, height, weight, country, eye_color))
+button.pack()
 
 root.mainloop()
