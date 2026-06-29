@@ -61,4 +61,6 @@ entry_field("country", "Country of residence:", 18)
 
 entry_field("age", "Age:", 12)
 
+entry_field("eye", "Eye color:", 18)
+
 root.mainloop()
