@@ -1,1 +1,1 @@
-A local voice assistant with simple functionality and ui
+A simple python script that allows you to enter your information and save it to a pdf for printing

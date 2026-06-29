@@ -1,16 +1,26 @@
-# This is a sample Python script.
+import tkinter as tk
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+root = tk.Tk(screenName="Ava", baseName="Ava", className="Ava", useTk=1)
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+label = tk.Label(root, text="Welcome to Ava, your local voice assistant")
+label.pack()
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+label = tk.Label(root, text="You can use the below button to shutdown the assistant at any time")
+label.pack()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+button = tk.Button(root, text="Shutdown", width=25, command=root.destroy)
+button.pack()
+
+
+tk.Label(root, text="First Name").grid(row=0, column=0)
+tk.Label(root, text="Last Name").grid(row=1, column=0)
+
+entry1 = tk.Entry(root)
+entry2 = tk.Entry(root)
+
+entry1.grid(row=0, column=1)
+entry2.grid(row=1, column=1)
+
+
+root.mainloop()
