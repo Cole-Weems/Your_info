@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eaf3985c-f297-4f6a-a85e-6bac55271c76" name="Changes" comment="Change setup for project">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="eaf3985c-f297-4f6a-a85e-6bac55271c76" name="Changes" comment="Setup function for entry fields">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -198,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782763782857</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Setup function for entry fields">
+      <option name="closed" value="true" />
+      <created>1782766858822</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1782766858822</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -215,6 +222,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Setup" />
     <MESSAGE value="Change setup for project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change setup for project" />
+    <MESSAGE value="Setup function for entry fields" />
+    <option name="LAST_COMMIT_MESSAGE" value="Setup function for entry fields" />
   </component>
 </project>
