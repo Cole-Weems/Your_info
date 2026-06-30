@@ -27,12 +27,15 @@ def entry_field(identifier, label, width):
     return entry
 
 def create_pdf(first, last, age, height, weight, country, eye_color, male, female):
+    status_label.config(text="Generating")
+    root.update_idletasks()
+
     fileName = 'info.pdf'
     documentTitle = 'Result'
 
-    if male == False:
+    if male == False and female == True:
         sex_v = "Sex: Female"
-    elif male == True:
+    elif male == True and female == False:
         sex_v = "Sex: Male"
     else:
         sex_v = None
@@ -77,6 +80,8 @@ def create_pdf(first, last, age, height, weight, country, eye_color, male, femal
     # print("Generating")
 
     pdf.save()
+    status_label.config(text="Generation complete")
+    root.update_idletasks()
 
 root = tk.Tk()
 root.title("Your Info")
@@ -118,6 +123,13 @@ eye_color = entry_field("eye", "Eye color:", 18)
 label = tk.Label(root, text="You can use the below button to export to a pdf")
 label.pack()
 
+label = tk.Label(root, text="Status:")
+label.pack()
+
+status = "Generation on standby"
+status_label = tk.Label(root, text=status)
+status_label.pack()
+
 button = tk.Button(root, text="Export", width=25, command=lambda: create_pdf(
         first.get(),
         last.get(),
@@ -130,5 +142,7 @@ button = tk.Button(root, text="Export", width=25, command=lambda: create_pdf(
         female.get()
 ))
 button.pack()
+
+
 
 root.mainloop()
