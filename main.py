@@ -1,6 +1,8 @@
 import tkinter as tk
-from reportlab.pdfgen import canvas
+from tkinter import filedialog
 from reportlab.lib import colors
+from reportlab.pdfgen import canvas
+
 
 def entry_field(identifier, label, width):
     entry = ((identifier) + "_entry")
@@ -30,7 +32,13 @@ def create_pdf(first, last, age, height, weight, country, eye_color, male, femal
     status_label.config(text="Generating")
     root.update_idletasks()
 
-    fileName = 'info.pdf'
+    file_name = filedialog.asksaveasfilename(
+        parent=root,
+        title="Save PDF",
+        defaultextension=".pdf",
+        filetypes=[("PDF files", "*.pdf")],
+        initialfile="info.pdf"
+    )
     documentTitle = 'Result'
 
     if male == False and female == True:
@@ -41,7 +49,7 @@ def create_pdf(first, last, age, height, weight, country, eye_color, male, femal
         sex_v = None
 
 
-    pdf = canvas.Canvas(fileName)
+    pdf = canvas.Canvas(file_name)
     pdf.setTitle(documentTitle)
     pdf.setFont("Helvetica-Bold", 36)
     pdf.setFillColorRGB(0, 0, 0)
