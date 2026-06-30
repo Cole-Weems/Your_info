@@ -26,22 +26,42 @@ def entry_field(identifier, label, width):
 
     return entry
 
-def create_pdf(first, last, age, height, weight, country, eye_color):
+def create_pdf(first, last, age, height, weight, country, eye_color, male, female):
     fileName = 'info.pdf'
     documentTitle = 'Result'
+
+    if male == False:
+        sex_v = "Sex: Female"
+    elif male == True:
+        sex_v = "Sex: Male"
+    else:
+        sex_v = None
+
 
     pdf = canvas.Canvas(fileName)
     pdf.setTitle(documentTitle)
     pdf.setFont("Helvetica-Bold", 36)
+    pdf.setFillColorRGB(0, 0, 0)
+
+    # The added "_v" differentiates between the variables passed into the function and the new variables created within the function
+    first_v = str(("First name: " + first))
+    last_v = str(("Last name: " + last))
+    age_v = str(("Age: " + age))
+    height_v = str(("Height (in): " + height))
+    weight_v = str(("Weight (lbs): " + weight))
+    country_v = str(("Country of residence: " + country))
+    eye_color_v = str(("Eye color: " + eye_color))
+
 
     textLines = [
-        str(("First name:" + first)),
-        ("Last name:" + last),
-        ("Age:" + age),
-        ("Height" + height),
-        ("Weight:" + weight),
-        ("Country of residence:" + country),
-        ("Eye color:" + eye_color)
+        first_v,
+        last_v,
+        age_v,
+        height_v,
+        weight_v,
+        country_v,
+        eye_color_v,
+        sex_v,
     ]
 
     text = pdf.beginText(40, 680)
@@ -52,6 +72,9 @@ def create_pdf(first, last, age, height, weight, country, eye_color):
         text.textLine(line)
 
     pdf.drawText(text)
+
+    # for debug
+    # print("Generating")
 
     pdf.save()
 
@@ -69,16 +92,22 @@ last = entry_field("last", "Last name:", 12)
 label = tk.Label(root, text="Sex:")
 label.pack()
 
-lb = tk.Listbox(root)
-lb.insert(1, "Male")
-lb.insert(2, "Female")
-
-lb.pack()
+male = tk.BooleanVar()
+female = tk.BooleanVar()
 
 
-height = entry_field("height", "Height:", 12)
+# 2. Link the variable to the Checkbutton using the 'variable' parameter
+checkbox = tk.Checkbutton(root, text="Male", variable=male)
+checkbox.pack()
 
-weight = entry_field("weight", "Weight:", 12)
+checkbox = tk.Checkbutton(root, text="Female", variable=female)
+checkbox.pack()
+
+
+
+height = entry_field("height", "Height (in):", 12)
+
+weight = entry_field("weight", "Weight (lbs):", 12)
 
 country = entry_field("country", "Country of residence:", 18)
 
@@ -89,7 +118,17 @@ eye_color = entry_field("eye", "Eye color:", 18)
 label = tk.Label(root, text="You can use the below button to export to a pdf")
 label.pack()
 
-button = tk.Button(root, text="Export", width=25, command=create_pdf(first, last, age, height, weight, country, eye_color))
+button = tk.Button(root, text="Export", width=25, command=lambda: create_pdf(
+        first.get(),
+        last.get(),
+        age.get(),
+        height.get(),
+        weight.get(),
+        country.get(),
+        eye_color.get(),
+        male.get(),
+        female.get()
+))
 button.pack()
 
 root.mainloop()
